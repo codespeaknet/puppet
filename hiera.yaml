@@ -5,7 +5,7 @@
 :yaml:
   :datadir: /srv/git/puppet/hieradata
 :hierarchy:
-  - "hosts/%{::hostname}"
   - apt
   - unattended_upgrades
   - needrestart
+  - firewall

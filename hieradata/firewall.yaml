@@ -1,0 +1,39 @@
+---
+site_firewall::common::firewall_multis:
+  '200 drop input block4':
+    proto: 'tcp'
+    action: 'drop'
+    ipset: 'block4 src'
+    provider: 'iptables'
+  '200 drop input block6':
+    proto: 'tcp'
+    action: 'drop'
+    ipset: 'block6 src'
+    provider: 'ip6tables'
+  '300 accept incoming mail':
+    dport: [25, 143, 465, 587, 993]
+    proto: 'tcp'
+    action: 'accept'
+  '300 accept incoming web':
+    dport: [80, 443]
+    proto: 'tcp'
+    action: 'accept'
+  '301 accept incoming github4':
+    dport: 8093
+    proto: 'tcp'
+    action: 'accept'
+    ipset: 'github-webhooks4 src'
+    provider: 'iptables'
+  '301 accept incoming github6':
+    dport: 8093
+    proto: 'tcp'
+    action: 'accept'
+    ipset: 'github-webhooks6 src'
+    provider: 'ip6tables'
+
+
+site_firewall::ipsets::ipsets:
+  block:
+    type: 'hash:ip'
+  github-webhooks:
+    type: 'hash:ip'

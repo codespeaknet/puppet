@@ -1,0 +1,29 @@
+---
+apt::sources:
+  'debian_stable':
+    location: 'http://deb.debian.org/debian/'
+    release: "%{facts.lsbdistcodename}"
+    repos: 'main contrib non-free'
+
+  'debian_security_updates':
+    location: 'http://deb.debian.org/debian-security/'
+    release: "%{facts.lsbdistcodename}/updates"
+    repos: 'main contrib non-free'
+
+  'debian_updates':
+    location: 'http://deb.debian.org/debian/'
+    release: "%{facts.lsbdistcodename}-updates"
+    repos: 'main contrib non-free'
+
+  'debian_backports':
+    location: 'http://deb.debian.org/debian/'
+    release: "%{facts.lsbdistcodename}-backports"
+    repos: 'main contrib non-free'
+
+  'rspamd':
+    location: 'http://rspamd.com/apt-stable/'
+    release: "%{facts.lsbdistcodename}"
+    repos: 'main'
+    key:
+      id: '3FA347D5E599BE4595CA2576FFA232EDBF21E25E'
+      server: 'pgp.mit.edu'

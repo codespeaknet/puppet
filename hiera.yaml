@@ -1,0 +1,13 @@
+---
+:backends:
+  - yaml
+:merge_behavior: deeper
+:yaml:
+  :datadir: /srv/git/puppet/hieradata
+:hierarchy:
+  - "hosts/%{::hostname}"
+  - apt
+  - common
+  - mail
+  - packages
+  - mysql

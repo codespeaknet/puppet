@@ -11,7 +11,7 @@ class site_firewall::pre {
     state    => ['RELATED', 'ESTABLISHED'],
     proto    => 'all',
     action   => 'accept',
-    provider => [ 'iptables', 'ip6tables'],
+    provider => ['iptables', 'ip6tables'],
   }
 
   firewall_multi { '002 Allow INPUT lo':
@@ -19,7 +19,7 @@ class site_firewall::pre {
     proto    => 'all',
     action   => 'accept',
     iniface  => 'lo',
-    provider => [ 'iptables', 'ip6tables'],
+    provider => ['iptables', 'ip6tables'],
   }
 
   firewallchain { 'FILTERS:filter:IPv4':
@@ -34,7 +34,7 @@ class site_firewall::pre {
     chain    => 'INPUT',
     proto    => 'all',
     jump     => 'FILTERS',
-    provider => [ 'iptables', 'ip6tables'],
+    provider => ['iptables', 'ip6tables'],
   }
 
   firewall_multi { '100 Allow INPUT SSH':
@@ -43,34 +43,34 @@ class site_firewall::pre {
     dport    => '22',
     state    => 'NEW',
     action   => 'accept',
-    provider => [ 'iptables', 'ip6tables'],
+    provider => ['iptables', 'ip6tables'],
   }
 
-  firewall { '101 allow input icmp':
-    chain  => 'INPUT',
-    state  => 'NEW',
-    proto  => 'icmp',
-    icmp   => [0,3,11],
-    action => 'accept',
+  firewall_multi { '101 allow input icmp':
+    chain    => 'INPUT',
+    state    => 'NEW',
+    proto    => 'icmp',
+    icmp     => [0, 3, 11],
+    action   => 'accept',
     provider => ['iptables'],
   }
 
-  firewall { '101 allow input icmp echo from subnet':
+  firewall_multi { '101 allow input icmp echo from subnet':
     chain    => 'INPUT',
     state    => 'NEW',
     proto    => 'ipv6-icmp',
-    icmp     => [130,131,132,143,151,152,153],
+    icmp     => [130, 131, 132, 143, 151, 152, 153],
     source   => 'fe80::/10',
     action   => 'accept',
     provider => ['ip6tables'],
   }
 
-  firewall { '102 allow input icmp':
-    chain  => 'INPUT',
-    state  => 'NEW',
-    proto  => 'ipv6-icmp',
-    icmp   => [1,2,3,4,133,134,135,136,137,141,142,148,149],
-    action => 'accept',
+  firewall_multi { '102 allow input icmp':
+    chain    => 'INPUT',
+    state    => 'NEW',
+    proto    => 'ipv6-icmp',
+    icmp     => [1, 2, 3, 4, 133, 134, 135, 136, 137, 141, 142, 148, 149],
+    action   => 'accept',
     provider => ['ip6tables'],
   }
 
@@ -79,7 +79,7 @@ class site_firewall::pre {
     proto    => 'all',
     action   => 'accept',
     outiface => 'lo',
-    provider => [ 'iptables', 'ip6tables'],
+    provider => ['iptables', 'ip6tables'],
   }
 
   firewall_multi { '003 Allow OUTPUT for root':
@@ -87,7 +87,7 @@ class site_firewall::pre {
     proto    => 'all',
     uid      => 'root',
     action   => 'accept',
-    provider => [ 'iptables', 'ip6tables'],
+    provider => ['iptables', 'ip6tables'],
   }
 
   firewall { '004 Allow OUTPUT ICMP echo':

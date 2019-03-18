@@ -10,7 +10,7 @@ To test a change before applying it, edit the code in */srv/git/puppet* and run
 
 
 ```shell
-sudo puppet apply --noop --verbose --show_diff --hiera_config /srv/git/puppet/hiera.yaml --modulepath=/srv/git/puppet/modules:/srv/git/puppet/site /srv/git/puppet/site/site.pp
+sudo puppet apply --noop --verbose --show_diff --hiera_config /srv/git/puppet/hiera.yaml --modulepath=/srv/git/puppet/modules:/srv/git/puppet/code /srv/git/puppet/code/site.pp
 ```
 
 
@@ -19,7 +19,7 @@ sudo puppet apply --noop --verbose --show_diff --hiera_config /srv/git/puppet/hi
 To run puppet for real
 
 ```shell
-sudo puppet apply --verbose --show_diff --hiera_config /srv/git/puppet/hiera.yaml --modulepath=/srv/git/puppet/modules:/srv/git/puppet/site /srv/git/puppet/site/site.pp
+sudo puppet apply --verbose --show_diff --hiera_config /srv/git/puppet/hiera.yaml --modulepath=/srv/git/puppet/modules:/srv/git/puppet/code /srv/git/puppet/code/site.pp
 ```
 
 

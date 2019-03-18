@@ -14,7 +14,7 @@ sudo puppet apply --noop --verbose --show_diff --hiera_config /srv/git/puppet/hi
 ```
 
 
-**Be aware that the cronjob will overwrite any change and/or commit!**
+**Be aware that the cronjob will overwrite any change and/or commit in the repository!**
 
 To run puppet for real
 
@@ -46,17 +46,36 @@ Currently hiera 3 is in use.
 Development
 -----------
 
-There is a *Gemfile* which installs puppet, hiera, and puppet-lint.
-
+Clone the repository from GitHub
 
 ```
+git clone git@github.com:codespeaknet/puppet.git
+```
+
+*Optional:* Using RVM, rbenv, or simply setting $GEM_HOME and $GEM_PATH setup a dedicated gem store.
+Then install bundler using the *Gemfile* present
+
+```shell
 gem install bundler
 bundler install
 ```
 
-Setting GEM_HOME and GEM_PATH to *.gem* in the project directory keeps the development environment
-clean against other gems.
-Alternatively RVM or rbenv can be used.
+If you wanna test your changes before committing them
+
+```shell
+rsync --delete --exclude=.gem  -rv . lists.codespeak.net:/srv/git/puppet/
+```
+
+```shell
+ssh lists.codespeak.net "sudo puppet apply --noop --verbose --show_diff  --hiera_config /srv/git/puppet/hiera.yaml --modulepath=/srv/git/puppet/modules:/srv/git/puppet/code /srv/git/puppet/code/site.pp"
+```
+
+Install modules on your development environment
+
+```shell
+r10k -c r10k.yaml puppetfile install
+```
+
 
 etckeeper integration
 ---------------------

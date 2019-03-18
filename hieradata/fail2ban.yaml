@@ -1,0 +1,20 @@
+---
+fail2ban::logtarget: 'SYSLOG'
+fail2ban::maxretry: 3
+fail2ban::sender: root@<fq-hostname>
+fail2ban::chain: FILTERS
+
+site_fail2ban::jails:
+  - dovecot
+  - postfix-sasl
+  - postfix-auth
+  - sshd
+
+site_fail2ban::filters:
+  postfix-auth:
+    - 'lost connection after AUTH from (.*)\[<HOST>\]'
+
+fail2ban::jail::postfix-auth:
+  logpath: "%(postfix_log)s"
+  backend: "%(postfix_backend)s"
+  banaction: iptables-multiport[name=postfix-auth, port="smtp,submission,imap,imaps,sieve", protocol=tcp]

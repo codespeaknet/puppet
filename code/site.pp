@@ -7,4 +7,5 @@ node default {
   include needrestart
   include site_firewall
   include site_firewall::ipsets
+  include site_fail2ban
 }

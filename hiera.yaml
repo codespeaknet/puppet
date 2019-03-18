@@ -9,3 +9,4 @@
   - unattended_upgrades
   - needrestart
   - firewall
+  - fail2ban

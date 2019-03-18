@@ -4,4 +4,5 @@
 node default {
   include apt
   include site_unattended_upgrades
+  include needrestart
 }

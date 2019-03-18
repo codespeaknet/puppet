@@ -8,7 +8,4 @@
   - "hosts/%{::hostname}"
   - apt
   - unattended_upgrades
-  - common
-  - mail
-  - packages
-  - mysql
+  - needrestart

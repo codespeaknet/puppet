@@ -2,5 +2,5 @@
 #
 
 node default {
-
+  include apt
 }

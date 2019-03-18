@@ -1,0 +1,7 @@
+---
+site_unattended_upgrades::configuration:
+  auto:
+    reboot: false
+
+  origins:
+    - 'origin=Debian,codename=${distro_codename},label=Debian-Security'

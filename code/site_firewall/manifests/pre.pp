@@ -57,7 +57,6 @@ class site_firewall::pre {
 
   firewall_multi { '101 allow input icmp echo from subnet':
     chain    => 'INPUT',
-    state    => 'NEW',
     proto    => 'ipv6-icmp',
     icmp     => [130, 131, 132, 143, 151, 152, 153],
     source   => 'fe80::/10',
@@ -67,9 +66,8 @@ class site_firewall::pre {
 
   firewall_multi { '102 allow input icmp':
     chain    => 'INPUT',
-    state    => 'NEW',
     proto    => 'ipv6-icmp',
-    icmp     => [1, 2, 3, 4, 133, 134, 135, 136, 137, 141, 142, 148, 149],
+    icmp     => [1, 2, 3, 4, 128, 133, 134, 135, 136, 137, 141, 142, 148, 149],
     action   => 'accept',
     provider => ['ip6tables'],
   }

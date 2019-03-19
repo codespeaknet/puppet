@@ -6,7 +6,7 @@ class site_firewall::pre {
   Firewall { require => undef, }
 
   # INPUT
-  firewall_multi { '001 Allow INPUT RELATED and ESTABLISHED':
+  firewall_multi { '001 allow input related and established':
     chain    => 'INPUT',
     state    => ['RELATED', 'ESTABLISHED'],
     proto    => 'all',
@@ -14,7 +14,7 @@ class site_firewall::pre {
     provider => ['iptables', 'ip6tables'],
   }
 
-  firewall_multi { '002 Allow INPUT lo':
+  firewall_multi { '002 allow input lo':
     chain    => 'INPUT',
     proto    => 'all',
     action   => 'accept',
@@ -37,7 +37,7 @@ class site_firewall::pre {
     provider => ['iptables', 'ip6tables'],
   }
 
-  firewall_multi { '100 Allow INPUT SSH':
+  firewall_multi { '100 allow input ssh':
     chain    => 'INPUT',
     proto    => 'tcp',
     dport    => '22',
@@ -74,7 +74,7 @@ class site_firewall::pre {
     provider => ['ip6tables'],
   }
 
-  firewall_multi { '002 Allow OUTPUT lo':
+  firewall_multi { '002 allow output lo':
     chain    => 'OUTPUT',
     proto    => 'all',
     action   => 'accept',
@@ -82,7 +82,7 @@ class site_firewall::pre {
     provider => ['iptables', 'ip6tables'],
   }
 
-  firewall_multi { '003 Allow OUTPUT for root':
+  firewall_multi { '003 allow output for root':
     chain    => 'OUTPUT',
     proto    => 'all',
     uid      => 'root',
@@ -90,7 +90,7 @@ class site_firewall::pre {
     provider => ['iptables', 'ip6tables'],
   }
 
-  firewall { '004 Allow OUTPUT ICMP echo':
+  firewall { '004 allow output icmp echo':
     chain  => 'OUTPUT',
     state  => 'NEW',
     proto  => 'icmp',

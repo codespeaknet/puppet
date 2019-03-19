@@ -14,10 +14,12 @@ site_firewall::common::firewall_multis:
     dport: [25, 143, 465, 587, 993]
     proto: 'tcp'
     action: 'accept'
+    provider: ['iptables', 'ip6tables']
   '300 accept incoming web':
     dport: [80, 443]
     proto: 'tcp'
     action: 'accept'
+    provider: ['iptables', 'ip6tables']
   '301 accept incoming github4':
     dport: 8093
     proto: 'tcp'
